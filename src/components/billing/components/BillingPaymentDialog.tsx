@@ -51,8 +51,8 @@ const BillingPaymentDialog = ({
     if (!stripe) throw new Error("Stripe failed to initialize");
 
     const apiUrl = window.location.hostname === "localhost"
-      ? "http://localhost:3000"
-      : "http://172.20.10.6:3000";
+      ? "https://api-stripe-vercel.onrender.com"
+      : "https://api-stripe-vercel.onrender.com";
 
     console.log("Using API URL:", apiUrl);
 
