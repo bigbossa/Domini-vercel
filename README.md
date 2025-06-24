@@ -23,7 +23,6 @@
   <img alt="Zod" src="https://img.shields.io/badge/-Zod-4F46E5?style=flat-square">
   <img alt="Vite" src="https://img.shields.io/badge/-Vite-646CFF?style=flat-square&logo=vite&logoColor=white">
   <img alt="ESLint" src="https://img.shields.io/badge/-ESLint-4B32C3?style=flat-square&logo=eslint">
-  <img alt="date-fns" src="https://img.shields.io/badge/-date-fns-pink?style=flat-square">
   <img alt="React Hook Form" src="https://img.shields.io/badge/-React%20Hook%20Form-EC5990?style=flat-square&logo=reacthookform&logoColor=white">
 </p>
 
