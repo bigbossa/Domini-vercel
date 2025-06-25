@@ -255,12 +255,9 @@ export default function RoomsPage() {
     const matchesSearch = room.room_number
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter
-      ? room.status === statusFilter
-      : true;
-    const matchesType = typeFilter
-      ? room.room_type === typeFilter
-      : true;
+    // Show all rooms if statusFilter is empty (All Statuses)
+    const matchesStatus = !statusFilter || room.status === statusFilter;
+    const matchesType = typeFilter ? room.room_type === typeFilter : true;
     return matchesSearch && matchesStatus && matchesType;
   });
 
@@ -327,9 +324,6 @@ export default function RoomsPage() {
                     <SelectContent>
                       <SelectItem value="Standard Single">Standard Single</SelectItem>
                       <SelectItem value="Standard Double">Standard Double</SelectItem>
-                      <SelectItem value="Deluxe Single">Deluxe Single</SelectItem>
-                      <SelectItem value="Deluxe Double">Deluxe Double</SelectItem>
-                      <SelectItem value="Suite">Suite</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -337,17 +331,14 @@ export default function RoomsPage() {
                   <label htmlFor="status">{t("rooms.status")}</label>
                   <Select
                     value={newRoom.status}
-                    onValueChange={(value) =>
-                      setNewRoom({ ...newRoom, status: value })
-                    }
+                    onValueChange={(value) => setNewRoom({ ...newRoom, status: value })}
+                    disabled
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select status" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="vacant">Vacant</SelectItem>
-                      <SelectItem value="occupied">Occupied</SelectItem>
-                      <SelectItem value="maintenance">Maintenance</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -364,6 +355,7 @@ export default function RoomsPage() {
                       })
                     }
                     placeholder="3500"
+                    disabled
                   />
                 </div>
                 <div className="space-y-2">
@@ -442,9 +434,6 @@ export default function RoomsPage() {
               <SelectItem value="">All Types</SelectItem>
               <SelectItem value="Standard Single">Standard Single</SelectItem>
               <SelectItem value="Standard Double">Standard Double</SelectItem>
-              <SelectItem value="Deluxe Single">Deluxe Single</SelectItem>
-              <SelectItem value="Deluxe Double">Deluxe Double</SelectItem>
-              <SelectItem value="Suite">Suite</SelectItem>
             </SelectContent>
           </Select>
         </div>

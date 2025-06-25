@@ -174,7 +174,7 @@ export default function BillingTable({
                             size="sm"
                             onClick={() => onMarkAsPaid(billing.id)}
                           >
-                            ทำเครื่องหมายว่าชำระแล้ว
+                            ชำระแล้ว
                           </Button>
                         )}
                         {!isAdmin && billing.status !== 'paid' && (

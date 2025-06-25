@@ -1,4 +1,3 @@
-
 import {
   Dialog,
   DialogContent,
@@ -51,15 +50,7 @@ export default function RoomDetailsDialog({ room, open, onOpenChange }: RoomDeta
       setLoading(true);
       const { data, error } = await supabase
         .from('occupancy')
-        .select(`
-          tenants!occupancy_tenant_id_fkey(
-            id,
-            first_name,
-            last_name,
-            email,
-            phone
-          )
-        `)
+        .select(`tenant:tenants(id, first_name, last_name, email, phone)`) // แก้ relation ให้ถูกต้อง
         .eq('room_id', room.id)
         .eq('is_current', true);
 
@@ -69,7 +60,7 @@ export default function RoomDetailsDialog({ room, open, onOpenChange }: RoomDeta
       }
 
       // Extract tenants from the nested structure
-      const tenants = data?.map(occupancy => occupancy.tenants).filter(Boolean) || [];
+      const tenants = data?.map(occ => occ.tenant).filter(Boolean) || [];
       setCurrentTenants(tenants);
     } catch (err) {
       console.error('Error in fetchCurrentTenants:', err);
